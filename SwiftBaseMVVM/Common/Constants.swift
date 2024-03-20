@@ -12,7 +12,7 @@ struct Constants{
     static var insrt = "INSERT \(into)"
     static var udt = "UPDATE"
     static var qr = "SELECT * FROM"
-    static var dlt = "DELETE"
+    static var dlt = "DELETE FROM"
     static var tbl = "TABLE"
     static var priKey = "PRIMARY KEY NOT NULL"
     static _const let into = "INTO"

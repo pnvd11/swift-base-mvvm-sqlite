@@ -171,7 +171,6 @@ extension SQLiteDatabase {
     }
 }
 
-// delete ???
 // update
 extension SQLiteDatabase {
     func update(_ from: BasicModel, conditionDic: [String: Any]) throws {
@@ -220,4 +219,38 @@ extension SQLiteDatabase {
     }
 }
 
+extension SQLiteDatabase {
+    // delete
+    func delete(_ from: BasicModel, id: Int32) throws {
+        let model = from
+        let table = SQLTable(model)
+//        let deleteStatementString = "DELETE FROM \(table.tableName!) WHERE id = \(id);"
+        let deleteStatementString = table.statementStringWith(QueryType.delete, model: model, conditionDic: ["id": id as Int32])
+        
+        guard let deleteStatement = try? prepareStatement(sql: deleteStatementString) else {
+            throw SQLiteError.Step(message: "errorMessage")
+        }
+        
+        var i = 0
+        let tmp = model.dictionary?.sorted(by: { $0.0 < $1.0 })
+        try! tmp?.compactMap { (key: String, value: Any) in
+#if DEBUG
+            print("*** del: \(i)")
+#endif
+            if (key == "id")
+            {
+                try table.bindingTblColVal(deleteStatement, valType: type(of: id), idxCol: i, val: id)
+            }
+            i += 1
+        }
+        
+        if sqlite3_step(deleteStatement) == SQLITE_DONE {
+            print("\nSuccessfully deleted row.")
+        } else {
+            print("\nCould not delete row.")
+        }
+        
+        sqlite3_finalize(deleteStatement)
+    }
+}
 // close

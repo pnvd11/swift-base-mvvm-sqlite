@@ -35,11 +35,17 @@ class MoviesListVC: UIViewController {
         // update
         
         do {
-            let udRes = try  vm.update(MovieModel(["name":"iiiiii108"]), conditionDic: ["id": 1 as Int32])
+            let udRes = try  vm.update(MovieModel(["name":"iiiiii109"]), conditionDic: ["id": 1 as Int32])
         } catch  {
             print(error.localizedDescription)
         }
         
+        // delete
+        do {
+            let dltRes = try  vm.delete(MovieModel(["name":"iiiiii109"]), id : 1 as Int32)
+        } catch  {
+            print(error.localizedDescription)
+        }
         
     }
     

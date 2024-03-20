@@ -47,4 +47,14 @@ class MoviesListRepozitory {
         return res
     }
     
+    func delete(_ from: MovieModel, id: Int32) throws -> Bool {
+        var res = false
+        do {
+            try db.delete(from, id: id)
+            res = true
+        } catch  {
+            print("*** del err: ")
+        }
+        return res
+    }
 }

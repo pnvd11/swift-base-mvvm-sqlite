@@ -170,6 +170,22 @@
 			path = CAPI;
 			sourceTree = "<group>";
 		};
+		8D3D53232BA8B7D800105306 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				8DD7E8152BA046FB00A12D9C /* Data */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		8D3D53242BA8B7F600105306 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8DD51E6C2B95D2B800E1365A /* Business */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		8D9432022BA1A50200C72050 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,8 +403,8 @@
 			children = (
 				8D9475B42BA01C4100CA4E5D /* Application */,
 				8DD51E6E2B95D39A00E1365A /* Presenter */,
-				8DD51E6C2B95D2B800E1365A /* Business */,
-				8DD7E8152BA046FB00A12D9C /* Data */,
+				8D3D53232BA8B7D800105306 /* Domain */,
+				8D3D53242BA8B7F600105306 /* Data */,
 				8DD7E8142BA0469600A12D9C /* Common */,
 				8DD51E6F2B95D3F000E1365A /* Resources */,
 			);

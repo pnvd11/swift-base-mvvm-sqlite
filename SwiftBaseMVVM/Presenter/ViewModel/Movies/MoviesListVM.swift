@@ -66,4 +66,15 @@ final class MoviesListVM {
         }
         return res
     }
+    
+    func delete(_ from: MovieModel, id: Int32) throws -> Bool  {
+        var res = false
+        do {
+            res = try mvRepo.delete(from, id: id)
+            
+        } catch  {
+            print("*** del err: ")
+        }
+        return res
+    }
 }

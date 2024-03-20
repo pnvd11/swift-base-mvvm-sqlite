@@ -260,6 +260,25 @@ struct SQLTable: SQLStatement {
             queryType  = stm
         case QueryType.delete:
             queryType = Constants.dlt
+            queryType += "\(Constants.spaceWhite)\(tableName!)"
+            queryType += "\(Constants.spaceWhite)\(Constants.conditionKey)\(Constants.spaceWhite)"
+            
+            var whereString = Constants.emptyString
+            if conditionDic == nil || conditionDic.keys.count == 0 {
+                return queryType + Constants.semiColon
+            }
+            else
+            {
+                conditionDic.compactMap { (key: String, value: Any) in
+                    whereString += "\(key) \(Constants.equal) \(Constants.questionMark) \(Constants.andOperator)\(Constants.spaceWhite)"
+                }
+            }
+            
+            let endIdx = whereString.index(whereString.startIndex, offsetBy: whereString.count - 4)
+            whereString = whereString.substring(to: endIdx)
+            queryType += whereString                        
+            queryType += Constants.semiColon
+            return queryType
         default:
             queryType = Constants.emptyString
         }
